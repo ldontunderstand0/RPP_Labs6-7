@@ -1,0 +1,30 @@
+{% extends "lab6/index.html" %}
+
+{% block content %}
+<p><a href="/lab6/">Back</a></p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <ul class="list-group">
+        <table>
+            <tr>
+                <td>id</td>
+                <td>author_id</td>
+                <td>name</td>
+            </tr>
+        {% for id, author_id, name in products %}
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ author_id }}</td>
+            <td>{{ name }}</td>
+            <td><p><a href="/lab6/groups/update/{{ id }}">Update</a></p></td>
+            <td><p><a href="/lab6/groups/delete/{{ id }}">Delete</a></p></td>
+        </tr>
+        
+        {% endfor %}
+        </table>
+    </ul>
+    
+{% endblock content %}
